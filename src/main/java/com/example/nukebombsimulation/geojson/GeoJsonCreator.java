@@ -13,7 +13,7 @@ public class GeoJsonCreator {
     UltimateGeoJSONFactory factory = new UltimateGeoJSONFactory();
 
     public String getGeoJSON() {
-        List<PositionDto> circlePoints = circleDrawer.getCirclePositions(new PositionDto(35, 38), 10000.0);
+        List<PositionDto> circlePoints = circleDrawer.getCirclePositions(new PositionDto(17, 51), 5000.0);
         PolygonDto circleAsPolygon = factory.createPolygon(circlePoints);
         return UltimateGeoJSONBuilder.getInstance().toGeoJSON(circleAsPolygon);
     }

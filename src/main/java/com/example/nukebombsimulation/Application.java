@@ -14,7 +14,6 @@ public class Application {
         ApplicationProperties applicationProperties1 = new ApplicationProperties(ConfigFactory.load());
         GeoJsonCreator geoJsonCreator = new GeoJsonCreator();
         System.out.println(geoJsonCreator.getGeoJSON());
-
     }
 
 }
