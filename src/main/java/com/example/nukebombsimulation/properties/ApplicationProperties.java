@@ -3,6 +3,8 @@ package com.example.nukebombsimulation.properties;
 
 import com.typesafe.config.Config;
 import lombok.Data;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
 @Data
 public class ApplicationProperties {

@@ -11,8 +11,8 @@ public class Application {
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
-        ApplicationProperties applicationProperties1 = new ApplicationProperties(ConfigFactory.load());
-        GeoJsonCreator geoJsonCreator = new GeoJsonCreator();
+        ApplicationProperties applicationProperties = new ApplicationProperties(ConfigFactory.load());
+        GeoJsonCreator geoJsonCreator = new GeoJsonCreator(applicationProperties);
         System.out.println(geoJsonCreator.getGeoJSON());
     }
 
