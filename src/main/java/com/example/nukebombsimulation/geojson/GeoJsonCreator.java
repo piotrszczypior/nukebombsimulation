@@ -17,10 +17,11 @@ public class GeoJsonCreator {
     UltimateGeoJSONFactory factory = new UltimateGeoJSONFactory();
 
 
-
     public String getGeoJSON() {
-        List<PositionDto> circlePoints = circleDrawer.getCirclePositions(new PositionDto(applicationProperties.getLongitude(), applicationProperties.getLatitude()), 5000.0);
-        PolygonDto circleAsPolygon = factory.createPolygon(circlePoints);
-        return UltimateGeoJSONBuilder.getInstance().toGeoJSON(circleAsPolygon);
+        List<PositionDto> circlePoints = circleDrawer.getCirclePositions(new PositionDto(applicationProperties.getLongitude(),
+                applicationProperties.getLatitude()), 5000.0);
+        ListCutter listCutter = new ListCutter(circlePoints);
+        PolygonDto circleAsPolygon = factory.createPolygon(listCutter.optimize());
+        return UltimateGeoJSONBuilder.getInstance().toGeoJSON(circleAsPolygon).strip();
     }
 }

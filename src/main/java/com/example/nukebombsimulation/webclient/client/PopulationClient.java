@@ -10,7 +10,8 @@ public class PopulationClient {
     public RestTemplate restTemplate = new RestTemplate();
 
     public PopulationDto getPopulation(String geojson){
-        MainDto mainDto = restTemplate.getForObject("https://api.worldpop.org/v1/services/stats?dataset=wpgppop&year=2010&geojson={geojson}&runasync=false", MainDto.class,geojson);
+        MainDto mainDto = restTemplate.getForObject(
+                "https://api.worldpop.org/v1/services/stats?dataset=wpgppop&year=2010&geojson={geojson}&runasync=false", MainDto.class,geojson);
         return PopulationDto.builder().population(mainDto.getData().getTotal_population()).build();
     }
 }
