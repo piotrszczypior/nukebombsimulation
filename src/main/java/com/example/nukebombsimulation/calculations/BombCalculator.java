@@ -14,7 +14,7 @@ public class BombCalculator implements IRadiusCalculator{
 
     @Override
     public int calculateRadius() {
-        return (int) ((4*Math.pow(energy,0.333))/(Math.pow(Math.pow(1 + (3175 / energy), 2), 1/6)));
+        return (int) ((9.8*Math.pow(energy,0.333))/(Math.pow(1 + Math.pow((3175 / energy), 2), 1/6)));
     }
 }
 
