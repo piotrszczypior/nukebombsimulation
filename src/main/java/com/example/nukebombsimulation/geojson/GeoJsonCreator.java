@@ -1,5 +1,7 @@
 package com.example.nukebombsimulation.geojson;
 
+import com.example.nukebombsimulation.calculations.BombCalculator;
+import com.example.nukebombsimulation.calculations.IRadiusCalculator;
 import com.example.nukebombsimulation.properties.ApplicationProperties;
 import com.typesafe.config.ConfigFactory;
 import lombok.RequiredArgsConstructor;
@@ -15,9 +17,11 @@ import java.util.List;
 public class GeoJsonCreator {
 
     private ApplicationProperties applicationProperties;
+    private BombCalculator radiusCalculator;
 
     public GeoJsonCreator() {
-        this.applicationProperties = new ApplicationProperties(ConfigFactory.load());;
+        this.applicationProperties = new ApplicationProperties(ConfigFactory.load());
+        radiusCalculator = new BombCalculator(applicationProperties.getYield());
     }
 
     CircularDrawingAlgorithmImpl circleDrawer = new CircularDrawingAlgorithmImpl();
@@ -26,7 +30,8 @@ public class GeoJsonCreator {
 
     public String getGeoJSON() {
         List<PositionDto> circlePoints = circleDrawer.getCirclePositions(new PositionDto(applicationProperties.getLongitude(),
-                applicationProperties.getLatitude()), 5000.0);
+                applicationProperties.getLatitude()), radiusCalculator.calculateRadius());
+
         ListCutter listCutter = new ListCutter(circlePoints);
         PolygonDto circleAsPolygon = factory.createPolygon(listCutter.optimize());
         return UltimateGeoJSONBuilder.getInstance().toGeoJSON(circleAsPolygon).strip();
