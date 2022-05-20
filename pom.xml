@@ -46,7 +46,8 @@
             <groupId>org.ugeojson</groupId>
             <artifactId>ultimate-geojson</artifactId>
             <version>0.0.1</version>
-            <scope>compile</scope>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libraries/ultimate-geojson.jar </systemPath>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
