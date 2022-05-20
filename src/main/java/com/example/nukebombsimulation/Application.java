@@ -15,21 +15,19 @@ public class Application {
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
-        //ApplicationProperties applicationProperties = new ApplicationProperties(ConfigFactory.load());
-
-        String filePath = "C:\\Users\\Admin\\Desktop\\properties.txt";
-
+//        ApplicationProperties applicationProperties = new ApplicationProperties(ConfigFactory.load());
+//        String filePath = "properties.txt";
         FileReader fileReader = new FileReader();
-
-        for(ApplicationProperties applicationProperties1 : fileReader.downloadData(filePath)){
-            GeoJsonCreator geoJsonCreator = new GeoJsonCreator(applicationProperties1);
-
-            //hardcodowane printowanie
-            System.out.println(geoJsonCreator.getGeoJSON());
-            BombService bombService = new BombService(new PopulationClient(), geoJsonCreator);
-            PopulationDto populationDto = bombService.getPopulation();
-            System.out.println(populationDto.getPopulation());
-        }
+        GeoJsonCreator geoJsonCreator = new GeoJsonCreator();
+//        for(ApplicationProperties applicationProperties1 : fileReader.downloadData(filePath)){
+//            GeoJsonCreator geoJsonCreator = new GeoJsonCreator(applicationProperties1);
+//
+//            //hardcodowane printowanie
+//            System.out.println(geoJsonCreator.getGeoJSON());
+//            BombService bombService = new BombService(new PopulationClient(), geoJsonCreator);
+//            PopulationDto populationDto = bombService.getPopulation();
+//            System.out.println(populationDto.getPopulation());
+//        }
 
 
     }
