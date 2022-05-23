@@ -1,10 +1,8 @@
 package com.example.nukebombsimulation.geojson;
 
-import com.example.nukebombsimulation.calculations.BombCalculator;
-import com.example.nukebombsimulation.calculations.IRadiusCalculator;
+import com.example.nukebombsimulation.calculations.AirBurstBomb;
 import com.example.nukebombsimulation.properties.ApplicationProperties;
 import com.typesafe.config.ConfigFactory;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.ugeojson.builder.UltimateGeoJSONBuilder;
 import org.ugeojson.math.draw.CircularDrawingAlgorithmImpl;
@@ -17,11 +15,11 @@ import java.util.List;
 public class GeoJsonCreator {
 
     private ApplicationProperties applicationProperties;
-    private BombCalculator radiusCalculator;
+    private AirBurstBomb radiusCalculator;
 
     public GeoJsonCreator() {
         this.applicationProperties = new ApplicationProperties(ConfigFactory.load());
-        radiusCalculator = new BombCalculator(applicationProperties.getYield());
+        radiusCalculator = new AirBurstBomb(applicationProperties.getYield());
     }
 
     CircularDrawingAlgorithmImpl circleDrawer = new CircularDrawingAlgorithmImpl();

@@ -1,9 +1,9 @@
 package com.example.nukebombsimulation.calculations;
 
 public class EnergyParser {
-    private static final int energy = 1000000;
+    private static final int ENERGY = 1000000;
 
     public int parse(int bombMass){
-        return bombMass * energy;
+        return bombMass * ENERGY;
     }
 }

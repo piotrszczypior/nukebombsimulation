@@ -14,9 +14,8 @@ public class ListCutter {
 
     public List<PositionDto> optimize()
     {
-        return points.stream().filter(x -> points.indexOf(x)%3 == 0).collect(Collectors.toList());
+        return points.stream()
+                .filter(x -> points.indexOf(x)%3 == 0)
+                .collect(Collectors.toList());
     }
-
-
-
 }
