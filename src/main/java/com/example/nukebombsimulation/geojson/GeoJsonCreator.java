@@ -1,6 +1,7 @@
 package com.example.nukebombsimulation.geojson;
 
 import com.example.nukebombsimulation.calculations.AirBurstBomb;
+import com.example.nukebombsimulation.calculations.IRadiusCalculator;
 import com.example.nukebombsimulation.properties.ApplicationProperties;
 import com.typesafe.config.ConfigFactory;
 import org.springframework.stereotype.Component;
@@ -15,7 +16,7 @@ import java.util.List;
 public class GeoJsonCreator {
 
     private ApplicationProperties applicationProperties;
-    private AirBurstBomb radiusCalculator;
+    private final IRadiusCalculator radiusCalculator;
 
     public GeoJsonCreator() {
         this.applicationProperties = new ApplicationProperties(ConfigFactory.load());
@@ -29,9 +30,9 @@ public class GeoJsonCreator {
     public String getGeoJSON() {
         List<PositionDto> circlePoints = circleDrawer.getCirclePositions(new PositionDto(applicationProperties.getLongitude(),
                 applicationProperties.getLatitude()), radiusCalculator.calculateRadius());
-
         ListCutter listCutter = new ListCutter(circlePoints);
         PolygonDto circleAsPolygon = factory.createPolygon(listCutter.optimize());
+
         return UltimateGeoJSONBuilder.getInstance().toGeoJSON(circleAsPolygon).strip();
     }
 }

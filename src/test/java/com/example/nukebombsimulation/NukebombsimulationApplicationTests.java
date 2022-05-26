@@ -8,6 +8,8 @@ class NukebombsimulationApplicationTests {
 
     @Test
     void contextLoads() {
+
+
     }
 
 }
