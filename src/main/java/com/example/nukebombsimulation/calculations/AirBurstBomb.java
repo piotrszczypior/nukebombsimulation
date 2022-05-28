@@ -12,8 +12,8 @@ public class AirBurstBomb implements IRadiusCalculator{
 
 
     @Override
-    public int calculateRadius() {
-        return (int) (AirBurstEnergy* (9.8*Math.pow(energy,0.333))/(Math.pow(1 + Math.pow((3175 / energy), 2), 1/6)));
+    public double calculateRadius() {
+        return  (AirBurstEnergy* (9.8*Math.pow(energy,0.333))/(Math.pow(1 + Math.pow((3175.00 / energy), 2), 1.0/6)));
     }
 }
 
