@@ -1,9 +1,9 @@
 package com.example.nukebombsimulation.casulties;
 
-public class Casulties implements ICasulties{
+public class Casualties implements ICasualties{
     int population;
 
-    public Casulties(int population) {
+    public Casualties(int population) {
         this.population = population;
     }
 
