@@ -14,7 +14,7 @@ public class ListCutter {
 
     public List<PositionDto> optimize()
     {
-        int divider = (int) Math.floor(points.size() / 100);
+        int divider = (int) Math.floor(points.size() / 100.0);
         return points.stream()
                 .filter(x -> points.indexOf(x)%divider  == 0)
                 .collect(Collectors.toList());

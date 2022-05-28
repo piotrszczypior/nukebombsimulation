@@ -1,7 +1,7 @@
 package com.example.nukebombsimulation.calculations;
 
 public class AirBurstBomb implements IRadiusCalculator{
-    private static final int AirBurstEnergy = 5;
+    private static final int AirBurstEnergy = 50;
 
     private final int energy;
 
@@ -10,10 +10,16 @@ public class AirBurstBomb implements IRadiusCalculator{
         this.energy = parser.parse(bombMass);
     }
 
-
     @Override
     public double calculateRadius() {
-        return  (AirBurstEnergy* (9.8*Math.pow(energy,0.333))/(Math.pow(1 + Math.pow((3175.00 / energy), 2), 1.0/6)));
+        Radius radius = new Radius();
+        return  AirBurstEnergy * radius.calculate(energy);
+    }
+
+    @Override
+    public double calculateRadius(int bombMass) {
+        Radius radius = new Radius();
+        return AirBurstEnergy * radius.calculate(new EnergyParser().parse(bombMass));
     }
 }
 

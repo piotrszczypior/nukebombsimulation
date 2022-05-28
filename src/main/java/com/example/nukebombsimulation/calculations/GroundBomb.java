@@ -2,6 +2,8 @@ package com.example.nukebombsimulation.calculations;
 
 public class GroundBomb implements IRadiusCalculator
 {
+    private final static double GROUND_DETONATION = 9.8;
+
     private final int energy;
 
     public GroundBomb(int bombMass) {
@@ -11,6 +13,12 @@ public class GroundBomb implements IRadiusCalculator
 
     @Override
     public double calculateRadius() {
-        return ((9.8*Math.pow(energy,0.333))/(Math.pow(1 + Math.pow((3175 / energy), 2), 1/6)));
+        Radius radius = new Radius();
+        return  GROUND_DETONATION * radius.calculate(energy);
+    }
+
+    @Override
+    public double calculateRadius(int bombMass) {
+        return GROUND_DETONATION * new Radius().calculate(new EnergyParser().parse(bombMass));
     }
 }
