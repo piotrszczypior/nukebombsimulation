@@ -28,13 +28,15 @@ public class Casualties implements ICasualties{
 
     @Override
     public int thermalRadiationCasualties() {
+        double casualtiesRatio = 0.9;
         double area = radiusCalculator.calculateRadius((int) (bombMass* thermalRatio)) - radiusCalculator.calculateRadius((int) (bombMass*radiationRatio));
 
-        return (int) (Math.floor(population*area)/ radius);
+        return (int) (Math.floor(casualtiesRatio * population * area/ radius));
     }
 
     @Override
     public int blastDamageCasualties() {
+        double casualtiesRatio = 0.85;
         double area = radiusCalculator.calculateRadius((int) (bombMass* blastRatio)) - radiusCalculator.calculateRadius((int) (bombMass* thermalRatio));
 
         return (int) (Math.floor(population*area)/ radius);
@@ -42,6 +44,7 @@ public class Casualties implements ICasualties{
 
     @Override
     public int radiationCasualties() {
+        double casualtiesRatio = 0.7;
         double area = radiusCalculator.calculateRadius((int) (bombMass* radiationRatio)) - radiusCalculator.calculateRadius((int) (bombMass* fireballRatio));
 
         return (int) (Math.floor(population*area)/ radius);
