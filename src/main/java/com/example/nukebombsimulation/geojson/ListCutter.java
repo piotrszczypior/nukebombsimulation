@@ -16,7 +16,7 @@ public class ListCutter {
     {
         int divider = (int) Math.floor(points.size() / 100.0);
         return points.stream()
-                .filter(x -> points.indexOf(x)%divider  == 0)
+                .filter(item -> points.indexOf(item)%divider  == 0)
                 .collect(Collectors.toList());
     }
 }

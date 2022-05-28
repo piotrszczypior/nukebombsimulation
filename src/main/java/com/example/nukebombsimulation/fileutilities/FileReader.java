@@ -14,7 +14,7 @@ public class FileReader {
 
     public List<ApplicationProperties> downloadData(String filePath)
     {
-        applicationPropertiesList.clear();
+//        applicationPropertiesList.clear();
         File file = new File(filePath);
 
         try {
