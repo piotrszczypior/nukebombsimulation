@@ -9,22 +9,22 @@ public class Casulties implements ICasulties{
 
 
     @Override
-    public int fireballCasulties() {
+    public int fireballCasualties() {
         return 0;
     }
 
     @Override
-    public int thermalRadiationCasulties() {
+    public int thermalRadiationCasualties() {
         return 0;
     }
 
     @Override
-    public int blastDamageCasulties() {
+    public int blastDamageCasualties() {
         return 0;
     }
 
     @Override
-    public int radiationCasulties() {
+    public int radiationCasualties() {
         return 0;
     }
 }
