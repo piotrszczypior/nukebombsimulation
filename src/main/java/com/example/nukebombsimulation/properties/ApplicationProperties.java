@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 
-@Data
 public class ApplicationProperties {
     private final double latitude;
     private final double longitude;
@@ -22,10 +21,28 @@ public class ApplicationProperties {
         this.airburst = config.getBoolean("airburst");
     }
 
-    public ApplicationProperties(String[] properties) {
-        this.latitude = Double.parseDouble(properties[0]);
-        this.longitude = Double.parseDouble(properties[1]);
-        this.yield = Integer.parseInt(properties[2]);
-        this.airburst = Objects.equals(properties[3], "true");
+    //    public ApplicationProperties(String[] properties) {
+//        this.latitude = Double.parseDouble(properties[0]);
+//        this.longitude = Double.parseDouble(properties[1]);
+//        this.yield = Integer.parseInt(properties[2]);
+//        this.airburst = Objects.equals(properties[3], "true");
+//    }
+
+    public double getLatitude() {
+        return latitude;
     }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public int getYield() {
+        return yield;
+    }
+
+    public boolean isAirburst() {
+        return airburst;
+    }
+
+
 }

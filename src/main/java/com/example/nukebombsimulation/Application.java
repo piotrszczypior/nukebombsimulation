@@ -1,6 +1,6 @@
 package com.example.nukebombsimulation;
 
-import com.example.nukebombsimulation.fileutilities.FileReader;
+//import com.example.nukebombsimulation.fileutilities.FileReader;
 import com.example.nukebombsimulation.geojson.GeoJsonCreator;
 import com.example.nukebombsimulation.model.PopulationDto;
 import com.example.nukebombsimulation.properties.ApplicationProperties;
@@ -17,8 +17,8 @@ public class Application {
         SpringApplication.run(Application.class, args);
 //        ApplicationProperties applicationProperties = new ApplicationProperties(ConfigFactory.load());
 //        String filePath = "properties.txt";
-        FileReader fileReader = new FileReader();
-        GeoJsonCreator geoJsonCreator = new GeoJsonCreator();
+//        FileReader fileReader = new FileReader();
+//        GeoJsonCreator geoJsonCreator = new GeoJsonCreator();
 //        for(ApplicationProperties applicationProperties1 : fileReader.downloadData(filePath)){
 //            GeoJsonCreator geoJsonCreator = new GeoJsonCreator(applicationProperties1);
 //

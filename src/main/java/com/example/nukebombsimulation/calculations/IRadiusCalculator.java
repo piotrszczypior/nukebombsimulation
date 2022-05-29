@@ -4,5 +4,5 @@ public interface IRadiusCalculator {
 
     double calculateRadius();
 
-    double calculateRadius(int bombMass);
+    double calculateRadius(double bombMass);
 }

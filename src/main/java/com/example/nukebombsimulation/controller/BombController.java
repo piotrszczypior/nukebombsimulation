@@ -13,7 +13,6 @@ public class BombController {
 
     private final BombService bombService;
 
-
     @GetMapping
     public PopulationDto getBomb() {
         return bombService.getPopulation();
