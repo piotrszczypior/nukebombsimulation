@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ListCutter {
-    private List<PositionDto> points;
+    private final List<PositionDto> points;
 
     public ListCutter(List<PositionDto> points) {
         this.points = points;

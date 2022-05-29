@@ -1,52 +1,47 @@
 package com.example.nukebombsimulation.casualties;
 
-import com.example.nukebombsimulation.calculations.IRadiusCalculator;
+import com.example.nukebombsimulation.calculations.AllRadiusesCalculator;
+import com.example.nukebombsimulation.model.EfectsRadiusesDto;
 
-public class Casualties implements ICasualties{
-    private double population;
-    private double bombMass;
-    private double radius;
+public class Casualties {
+    private final double totalPopulation;
 
-    private final double fireballRatio = 0.1;
-    private final double thermalRatio = 0.35;
-    private final double blastRatio = 0.5;
-    private final double radiationRatio = 0.15;
+    private static final double heavyBlastDamageRatio = 1;
 
-    private final IRadiusCalculator radiusCalculator;
+    private static final double averageBlastDamageRatio = 0.7;
 
-    public Casualties(double population, double bombMass, IRadiusCalculator radiusCalculator) {
-        this.population = population;
-        this.bombMass = bombMass;
-        this.radiusCalculator = radiusCalculator;
-        this.radius = radiusCalculator.calculateRadius();
+    private static final double lightBlastDamageRatio = 0.3;
+    private final EfectsRadiusesDto efectsRadiusesDto;
+
+    public Casualties(double population) {
+        this.totalPopulation = population;
+        AllRadiusesCalculator allRadiusesCalculator = new AllRadiusesCalculator();
+        this.efectsRadiusesDto = allRadiusesCalculator.SetAllRadiuses();
+
     }
 
-    @Override
-    public double fireballCasualties() {
-        return population * radiusCalculator.calculateRadius((bombMass*fireballRatio)/ radius);
+    public double populationOnHeavyBlastDamage(){
+        return totalPopulation * (efectsRadiusesDto.getHeavyBlastDamageRadius()/efectsRadiusesDto.getLightBlastDamageRadius());
     }
-
-    @Override
-    public double thermalRadiationCasualties() {
-        double casualtiesRatio = 0.9;
-        double area = radiusCalculator.calculateRadius((bombMass* thermalRatio)) - radiusCalculator.calculateRadius(bombMass*radiationRatio);
-
-        return (casualtiesRatio * population * area/ radius);
+    public double heavyBlastDamageFatalities() {
+        return populationOnHeavyBlastDamage() * heavyBlastDamageRatio;
     }
-
-    @Override
-    public double blastDamageCasualties() {
-        double casualtiesRatio = 0.85;
-        double area = radiusCalculator.calculateRadius((bombMass* blastRatio)) - radiusCalculator.calculateRadius(bombMass* thermalRatio);
-
-        return (casualtiesRatio * population * area)/ radius;
+    public double populationOnAverageBlastDamage(){
+        return (totalPopulation - populationOnHeavyBlastDamage()) * (efectsRadiusesDto.getHeavyBlastDamageRadius()/efectsRadiusesDto.getLightBlastDamageRadius());
     }
-
-    @Override
-    public double radiationCasualties() {
-        double casualtiesRatio = 0.7;
-        double area = radiusCalculator.calculateRadius((bombMass* radiationRatio)) - radiusCalculator.calculateRadius(bombMass* fireballRatio);
-
-        return (casualtiesRatio * population * area)/ radius;
+    public double averageBlastDamageFatalities() {
+        return populationOnAverageBlastDamage() * averageBlastDamageRatio;
+    }
+    public double populationOnLightBlastDamage(){
+        return (totalPopulation - populationOnHeavyBlastDamage() - populationOnAverageBlastDamage()) * efectsRadiusesDto.getHeavyBlastDamageRadius()/efectsRadiusesDto.getLightBlastDamageRadius();
+    }
+    public double lightBlastDamageFatalities() {
+        return populationOnLightBlastDamage() * lightBlastDamageRatio;
+    }
+    public double getAllFatalities(){
+        return heavyBlastDamageFatalities() + averageBlastDamageFatalities() + lightBlastDamageFatalities();
+    }
+    public double getAllInjuries(){
+        return (totalPopulation - getAllFatalities()) * 0.95;
     }
 }

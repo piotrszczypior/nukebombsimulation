@@ -1,6 +1,8 @@
 package com.example.nukebombsimulation.service;
 import com.example.nukebombsimulation.geojson.GeoJsonCreator;
 import com.example.nukebombsimulation.model.PopulationDto;
+import com.example.nukebombsimulation.model.Result;
+import com.example.nukebombsimulation.model.ResultBuilder;
 import com.example.nukebombsimulation.webclient.client.PopulationClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,8 +15,7 @@ public class BombService {
     private final GeoJsonCreator geoJsonCreator;
 
 
-    public PopulationDto getPopulation(){
-        System.out.println(geoJsonCreator.getGeoJSON());
-        return populationClient.getPopulation(geoJsonCreator.getGeoJSON());
+    public Result getOutcome(){
+        return ResultBuilder.SetResult(populationClient.getPopulation(geoJsonCreator.getGeoJSON()));
     }
 }

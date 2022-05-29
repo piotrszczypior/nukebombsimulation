@@ -1,22 +1,22 @@
 package com.example.nukebombsimulation.model;
 
 public class CasualtiesDto {
-    private static double estimatedFatalities;
-    private static double estimatedInjuries;
+    private double estimatedFatalities;
+    private double estimatedInjuries;
 
-    public static double getEstimatedFatalities() {
+    public double getEstimatedFatalities() {
         return estimatedFatalities;
     }
 
-    public static void setEstimatedFatalities(double estimatedFatalities) {
-        CasualtiesDto.estimatedFatalities = estimatedFatalities;
+    public void setEstimatedFatalities(double estimatedFatalities) {
+        this.estimatedFatalities = estimatedFatalities;
     }
 
-    public static double getEstimatedInjuries() {
+    public double getEstimatedInjuries() {
         return estimatedInjuries;
     }
 
-    public static void setEstimatedInjuries(double estimatedInjuries) {
-        CasualtiesDto.estimatedInjuries = estimatedInjuries;
+    public void setEstimatedInjuries(double estimatedInjuries) {
+        this.estimatedInjuries = estimatedInjuries;
     }
 }
