@@ -16,10 +16,16 @@ public class GeoJsonCreator {
     private final ApplicationProperties applicationProperties;
     private final MainRadiusCalculator mainRadiusCalculator;
 
-    public GeoJsonCreator() {
-        this.applicationProperties = new ApplicationProperties();
-        this.mainRadiusCalculator = new MainRadiusCalculator();
+    public GeoJsonCreator(ApplicationProperties applicationProperties) {
+        this.applicationProperties = applicationProperties;
+        this.mainRadiusCalculator = new MainRadiusCalculator(applicationProperties.isAirburst(), applicationProperties.getYield());
     }
+
+    public double getMainRaius()
+    {
+        return mainRadiusCalculator.calculateRadius();
+    }
+
 
     public String getGeoJSON() {
         CircularDrawingAlgorithmImpl circleDrawer = new CircularDrawingAlgorithmImpl();

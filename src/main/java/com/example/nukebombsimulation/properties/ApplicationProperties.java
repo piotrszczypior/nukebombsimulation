@@ -11,6 +11,13 @@ public class ApplicationProperties {
     private final int yield;
     private final boolean airburst;
 
+    public ApplicationProperties(double latitude, double longitude, int yield, boolean airburst) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.yield = yield;
+        this.airburst = airburst;
+    }
+
     public ApplicationProperties() {
         Config config = ConfigFactory.load();
         this.latitude = config.getDouble("latitude");

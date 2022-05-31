@@ -1,13 +1,15 @@
 package com.example.nukebombsimulation.model;
 
+import com.example.nukebombsimulation.dto.CasualtiesDto;
+import com.example.nukebombsimulation.dto.EffectsRadiusesDto;
 import lombok.Builder;
 
 @Builder
 public class Result {
     private CasualtiesDto casualties;
-    private EfectsRadiusesDto radiuses;
+    private EffectsRadiusesDto radiuses;
 
-    public Result(CasualtiesDto casualties, EfectsRadiusesDto radiuses) {
+    public Result(CasualtiesDto casualties, EffectsRadiusesDto radiuses) {
         this.casualties = casualties;
         this.radiuses = radiuses;
     }
@@ -16,7 +18,7 @@ public class Result {
         this.casualties = casualties;
     }
 
-    public void setRadiuses(EfectsRadiusesDto radiuses) {
+    public void setRadiuses(EffectsRadiusesDto radiuses) {
         this.radiuses = radiuses;
     }
 
@@ -24,7 +26,7 @@ public class Result {
         return casualties;
     }
 
-    public EfectsRadiusesDto getRadiuses() {
+    public EffectsRadiusesDto getRadiuses() {
         return radiuses;
     }
 }

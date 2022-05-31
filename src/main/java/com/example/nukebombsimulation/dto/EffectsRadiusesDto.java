@@ -1,6 +1,6 @@
-package com.example.nukebombsimulation.model;
+package com.example.nukebombsimulation.dto;
 
-public class EfectsRadiusesDto {
+public class EffectsRadiusesDto {
     private double fireballRadius;
     private double heavyBlastDamageRadius;
     private double radiationRadius;

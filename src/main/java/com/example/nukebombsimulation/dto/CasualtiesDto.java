@@ -1,4 +1,4 @@
-package com.example.nukebombsimulation.model;
+package com.example.nukebombsimulation.dto;
 
 public class CasualtiesDto {
     private double estimatedFatalities;

@@ -1,6 +1,5 @@
 package com.example.nukebombsimulation.webclient.client;
 
-import com.example.nukebombsimulation.model.PopulationDto;
 import com.example.nukebombsimulation.webclient.dto.MainDto;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;

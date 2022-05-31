@@ -10,9 +10,11 @@ public class MainRadiusCalculator implements IRadiusCalculator{
     private final double energy;
     private final RadiusFormula radius;
 
-    public MainRadiusCalculator() {
-        ApplicationProperties applicationProperties = new ApplicationProperties();
-        if(applicationProperties.isAirburst()){
+    private boolean isAirburst;
+    private int yield;
+
+    public MainRadiusCalculator(boolean isAirburst, int yield) {
+        if(isAirburst){
             PARAMETER = 16.48;
         }
         else{
@@ -20,7 +22,7 @@ public class MainRadiusCalculator implements IRadiusCalculator{
         }
         this.radius = new RadiusFormula();
         EnergyParser parser = new EnergyParser();
-        this.energy = parser.parse(applicationProperties.getYield());
+        this.energy = parser.parse(yield);
     }
 
     @Override

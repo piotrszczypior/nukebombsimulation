@@ -1,7 +1,7 @@
 package com.example.nukebombsimulation.casualties;
 
 import com.example.nukebombsimulation.calculations.AllRadiusesCalculator;
-import com.example.nukebombsimulation.model.EfectsRadiusesDto;
+import com.example.nukebombsimulation.dto.EffectsRadiusesDto;
 
 public class Casualties {
     private final double totalPopulation;
@@ -11,12 +11,11 @@ public class Casualties {
     private static final double averageBlastDamageRatio = 0.7;
 
     private static final double lightBlastDamageRatio = 0.3;
-    private final EfectsRadiusesDto efectsRadiusesDto;
+    private final EffectsRadiusesDto efectsRadiusesDto;
 
-    public Casualties(double population) {
+    public Casualties(double population, EffectsRadiusesDto efectsRadiusesDto) {
         this.totalPopulation = population;
-        AllRadiusesCalculator allRadiusesCalculator = new AllRadiusesCalculator();
-        this.efectsRadiusesDto = allRadiusesCalculator.SetAllRadiuses();
+        this.efectsRadiusesDto = efectsRadiusesDto;
 
     }
 
