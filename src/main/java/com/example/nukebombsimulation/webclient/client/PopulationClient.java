@@ -7,7 +7,7 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class PopulationClient {
 
-    public RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate = new RestTemplate();
 
     public float getPopulation(String geojson){
         MainDto mainDto = restTemplate.getForObject(

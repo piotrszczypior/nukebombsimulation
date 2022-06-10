@@ -2,24 +2,18 @@ package com.example.nukebombsimulation.model;
 
 import com.example.nukebombsimulation.dto.CasualtiesDto;
 import com.example.nukebombsimulation.dto.EffectsRadiusesDto;
-import lombok.Builder;
+import lombok.Value;
 
-@Builder
+@Value
 public class Result {
-    private CasualtiesDto casualties;
-    private EffectsRadiusesDto radiuses;
+    CasualtiesDto casualties;
+    EffectsRadiusesDto radiuses;
+    Bomb bomb;
 
-    public Result(CasualtiesDto casualties, EffectsRadiusesDto radiuses) {
+    public Result(CasualtiesDto casualties, EffectsRadiusesDto radiuses, Bomb bomb) {
         this.casualties = casualties;
         this.radiuses = radiuses;
-    }
-
-    public void setCasualties(CasualtiesDto casualties) {
-        this.casualties = casualties;
-    }
-
-    public void setRadiuses(EffectsRadiusesDto radiuses) {
-        this.radiuses = radiuses;
+        this.bomb = bomb;
     }
 
     public CasualtiesDto getCasualties() {
@@ -29,4 +23,9 @@ public class Result {
     public EffectsRadiusesDto getRadiuses() {
         return radiuses;
     }
+
+    public Bomb getBomb() {
+        return bomb;
+    }
+
 }

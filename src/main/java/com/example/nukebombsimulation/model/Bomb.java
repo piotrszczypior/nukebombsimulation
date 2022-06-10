@@ -1,5 +1,7 @@
 package com.example.nukebombsimulation.model;
 
+import org.springframework.stereotype.Component;
+
 public class Bomb {
     private int id;
     private double latitude;

@@ -2,9 +2,8 @@ package com.example.nukebombsimulation.controller;
 
 
 import com.example.nukebombsimulation.dto.CreateBombDto;
-import com.example.nukebombsimulation.interfaces.IBombService;
+import com.example.nukebombsimulation.service.IBombService;
 import com.example.nukebombsimulation.model.Result;
-import com.example.nukebombsimulation.service.BombService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
