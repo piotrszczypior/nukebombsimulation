@@ -1,10 +1,8 @@
 package com.example.nukebombsimulation.service;
 import com.example.nukebombsimulation.dto.CreateBombDto;
-import com.example.nukebombsimulation.geojson.GeoJsonCreator;
 import com.example.nukebombsimulation.model.Bomb;
 import com.example.nukebombsimulation.model.Result;
 import com.example.nukebombsimulation.builder.ResultBuilder;
-import com.example.nukebombsimulation.properties.ApplicationProperties;
 import com.example.nukebombsimulation.webclient.client.PopulationClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,19 +12,19 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class BombService implements IBombService {
-    private static final List<Result> _RESULTS = new ArrayList<>();
+public class BombService implements com.example.nukebombsimulation.interfaces.BombService {
+    private static final List<Result> RESULTS = new ArrayList<>();
 
     private final PopulationClient populationClient;
 
     @Override
     public List<Result> getOutcome(){
-        return _RESULTS;
+        return RESULTS;
     }
 
     @Override
     public Result createBomb(CreateBombDto createdBomb) {
-        int id = _RESULTS.size() > 0 ? _RESULTS.size() : 0;
+        int id = RESULTS.size() > 0 ? RESULTS.size() : 0;
         Bomb newBomb = new Bomb(
                 id,
                 createdBomb.getLatitude(),
@@ -36,7 +34,7 @@ public class BombService implements IBombService {
         );
 
         Result result = new ResultBuilder(populationClient).SetResult(newBomb);
-        _RESULTS.add(result);
+        RESULTS.add(result);
         return result;
     }
 }

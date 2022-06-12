@@ -1,17 +1,12 @@
 package com.example.nukebombsimulation.calculations;
 
-import com.example.nukebombsimulation.properties.ApplicationProperties;
+import com.example.nukebombsimulation.interfaces.RadiusCalculator;
 
-
-
-public class MainRadiusCalculator implements IRadiusCalculator{
+public class MainRadiusCalculator implements RadiusCalculator {
 
     private final double PARAMETER;
     private final double energy;
     private final RadiusFormula radius;
-
-    private boolean isAirburst;
-    private int yield;
 
     public MainRadiusCalculator(boolean isAirburst, int yield) {
         if(isAirburst){

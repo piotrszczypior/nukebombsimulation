@@ -19,19 +19,14 @@ public class ResultBuilder {
     public Result SetResult(Bomb bomb){
         GeoJsonCreator geoJsonCreator = new GeoJsonCreator(bomb);
         float population = populationClient.getPopulation(geoJsonCreator.getGeoJSON());
-        double mainRadius = geoJsonCreator.getMainRaius();
-
+        double mainRadius = geoJsonCreator.getMainRadius();
 
         AllRadiusesCalculator allRadiusesCalculator = new AllRadiusesCalculator((int) mainRadius);
         var radiuses  = allRadiusesCalculator.SetAllRadiuses();
         Casualties casualties = new Casualties(population, radiuses);
-
         CasualtiesDto casualtiesDto = new CasualtiesDto();
-
         casualtiesDto.setEstimatedFatalities(casualties.getAllFatalities());
-
         casualtiesDto.setEstimatedInjuries(casualties.getAllInjuries());
-
         return new Result(casualtiesDto,radiuses, bomb);
     }
 }

@@ -2,7 +2,7 @@ package com.example.nukebombsimulation.controller;
 
 
 import com.example.nukebombsimulation.dto.CreateBombDto;
-import com.example.nukebombsimulation.service.IBombService;
+import com.example.nukebombsimulation.interfaces.BombService;
 import com.example.nukebombsimulation.model.Result;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -16,17 +16,17 @@ import java.util.List;
 @EnableSwagger2
 public class BombController {
 
-    private final IBombService _bombService;
+    private final BombService bombService;
 
     @GetMapping("")
     public List<Result> getResult(){
-        return _bombService.getOutcome();
+        return bombService.getOutcome();
     }
 
     @PostMapping("/")
     public Result createBomb(@RequestBody CreateBombDto createdBomb)
     {
-        return _bombService.createBomb(createdBomb);
+        return bombService.createBomb(createdBomb);
     }
 
 }

@@ -1,41 +1,37 @@
 package com.example.nukebombsimulation.casualties;
 
-import com.example.nukebombsimulation.calculations.AllRadiusesCalculator;
 import com.example.nukebombsimulation.dto.EffectsRadiusesDto;
 
 public class Casualties {
+
+    private static final double HEAVY_BLAST_DAMAGE_RATIO = 1;
+    private static final double AVERAGE_BLAST_DAMAGE_RATIO = 0.7;
+    private static final double LIGHT_BLAST_DAMAGE_RATIO = 0.3;
     private final double totalPopulation;
-
-    private static final double heavyBlastDamageRatio = 1;
-
-    private static final double averageBlastDamageRatio = 0.7;
-
-    private static final double lightBlastDamageRatio = 0.3;
     private final EffectsRadiusesDto efectsRadiusesDto;
 
     public Casualties(double population, EffectsRadiusesDto efectsRadiusesDto) {
         this.totalPopulation = population;
         this.efectsRadiusesDto = efectsRadiusesDto;
-
     }
 
     public double populationOnHeavyBlastDamage(){
         return totalPopulation * (efectsRadiusesDto.getHeavyBlastDamageRadius()/efectsRadiusesDto.getLightBlastDamageRadius());
     }
     public double heavyBlastDamageFatalities() {
-        return populationOnHeavyBlastDamage() * heavyBlastDamageRatio;
+        return populationOnHeavyBlastDamage() * HEAVY_BLAST_DAMAGE_RATIO;
     }
     public double populationOnAverageBlastDamage(){
         return (totalPopulation - populationOnHeavyBlastDamage()) * (efectsRadiusesDto.getHeavyBlastDamageRadius()/efectsRadiusesDto.getLightBlastDamageRadius());
     }
     public double averageBlastDamageFatalities() {
-        return populationOnAverageBlastDamage() * averageBlastDamageRatio;
+        return populationOnAverageBlastDamage() * AVERAGE_BLAST_DAMAGE_RATIO;
     }
     public double populationOnLightBlastDamage(){
         return (totalPopulation - populationOnHeavyBlastDamage() - populationOnAverageBlastDamage()) * efectsRadiusesDto.getHeavyBlastDamageRadius()/efectsRadiusesDto.getLightBlastDamageRadius();
     }
     public double lightBlastDamageFatalities() {
-        return populationOnLightBlastDamage() * lightBlastDamageRatio;
+        return populationOnLightBlastDamage() * LIGHT_BLAST_DAMAGE_RATIO;
     }
     public double getAllFatalities(){
         return heavyBlastDamageFatalities() + averageBlastDamageFatalities() + lightBlastDamageFatalities();

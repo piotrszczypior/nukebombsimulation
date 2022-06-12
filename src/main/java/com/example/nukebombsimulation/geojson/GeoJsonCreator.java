@@ -2,8 +2,6 @@ package com.example.nukebombsimulation.geojson;
 
 import com.example.nukebombsimulation.calculations.MainRadiusCalculator;
 import com.example.nukebombsimulation.model.Bomb;
-import com.example.nukebombsimulation.properties.ApplicationProperties;
-import org.springframework.stereotype.Component;
 import org.ugeojson.builder.UltimateGeoJSONBuilder;
 import org.ugeojson.math.draw.CircularDrawingAlgorithmImpl;
 import org.ugeojson.model.PositionDto;
@@ -22,7 +20,7 @@ public class GeoJsonCreator {
         this.mainRadiusCalculator = new MainRadiusCalculator(bomb.isAirBurst(), bomb.getYield());
     }
 
-    public double getMainRaius()
+    public double getMainRadius()
     {
         return mainRadiusCalculator.calculateRadius();
     }

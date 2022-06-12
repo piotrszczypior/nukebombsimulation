@@ -1,11 +1,11 @@
-package com.example.nukebombsimulation.service;
+package com.example.nukebombsimulation.interfaces;
 
 import com.example.nukebombsimulation.dto.CreateBombDto;
 import com.example.nukebombsimulation.model.Result;
 
 import java.util.List;
 
-public interface IBombService {
+public interface BombService {
 
     List<Result> getOutcome();
 
