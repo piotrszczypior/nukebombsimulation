@@ -13,17 +13,19 @@ import java.util.List;
 public class GeoJsonCreator {
 
     private final Bomb bomb;
-    private final MainRadiusCalculator mainRadiusCalculator;
+    private final double mainRadius;
+//    private final MainRadiusCalculator mainRadiusCalculator;
 
-    public GeoJsonCreator(Bomb bomb) {
+    public GeoJsonCreator(Bomb bomb, double mainRadius) {
         this.bomb = bomb;
-        this.mainRadiusCalculator = new MainRadiusCalculator(bomb.isAirBurst(), bomb.getYield());
+//        this.mainRadiusCalculator = new MainRadiusCalculator(bomb.isAirBurst(), bomb.getYield());
+        this.mainRadius = mainRadius;
     }
 
     public String getGeoJSON() {
         CircularDrawingAlgorithmImpl circleDrawer = new CircularDrawingAlgorithmImpl();
         UltimateGeoJSONFactory factory = new UltimateGeoJSONFactory();
-        List<PositionDto> circlePoints = circleDrawer.getCirclePositions(new PositionDto(bomb.getLongitude(), bomb.getLatitude()), mainRadiusCalculator.calculateRadius());
+        List<PositionDto> circlePoints = circleDrawer.getCirclePositions(new PositionDto(bomb.getLongitude(), bomb.getLatitude()), mainRadius);
         ListCutter listCutter = new ListCutter(circlePoints);
         PolygonDto circleAsPolygon = factory.createPolygon(listCutter.optimize());
         return UltimateGeoJSONBuilder.getInstance().toGeoJSON(circleAsPolygon).strip();

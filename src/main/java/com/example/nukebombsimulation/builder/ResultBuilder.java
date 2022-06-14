@@ -12,15 +12,15 @@ import com.example.nukebombsimulation.webclient.client.PopulationClient;
 public class ResultBuilder {
     private final PopulationClient populationClient;
 
-
     public ResultBuilder(PopulationClient populationClient) {
         this.populationClient = populationClient;
     }
 
     public Result SetResult(Bomb bomb){
-        GeoJsonCreator geoJsonCreator = new GeoJsonCreator(bomb);
-        float population = populationClient.getPopulation(geoJsonCreator.getGeoJSON());
         double mainRadius = new MainRadiusCalculator(bomb.isAirBurst(), bomb.getYield()).calculateRadius();
+
+        GeoJsonCreator geoJsonCreator = new GeoJsonCreator(bomb, mainRadius);
+        float population = populationClient.getPopulation(geoJsonCreator.getGeoJSON());
 
         AllRadiusesCalculator allRadiusesCalculator = new AllRadiusesCalculator((int) mainRadius);
         var radiuses  = allRadiusesCalculator.SetAllRadiuses();
@@ -28,6 +28,7 @@ public class ResultBuilder {
         CasualtiesDto casualtiesDto = new CasualtiesDto();
         casualtiesDto.setEstimatedFatalities(casualties.getAllFatalities());
         casualtiesDto.setEstimatedInjuries(casualties.getAllInjuries());
+
         return new Result(casualtiesDto,radiuses, bomb);
     }
 }
