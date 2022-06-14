@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class BombService implements com.example.nukebombsimulation.interfaces.BombService {
+public class BombService implements IBombService {
     private static final List<Result> RESULTS = new ArrayList<>();
 
     private final PopulationClient populationClient;

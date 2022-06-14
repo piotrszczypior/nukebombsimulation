@@ -20,12 +20,6 @@ public class GeoJsonCreator {
         this.mainRadiusCalculator = new MainRadiusCalculator(bomb.isAirBurst(), bomb.getYield());
     }
 
-    public double getMainRadius()
-    {
-        return mainRadiusCalculator.calculateRadius();
-    }
-
-
     public String getGeoJSON() {
         CircularDrawingAlgorithmImpl circleDrawer = new CircularDrawingAlgorithmImpl();
         UltimateGeoJSONFactory factory = new UltimateGeoJSONFactory();

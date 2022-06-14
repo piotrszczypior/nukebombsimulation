@@ -1,7 +1,5 @@
 package com.example.nukebombsimulation.calculations;
 
-import com.example.nukebombsimulation.interfaces.RadiusCalculator;
-
 public class MainRadiusCalculator implements RadiusCalculator {
 
     private final double PARAMETER;

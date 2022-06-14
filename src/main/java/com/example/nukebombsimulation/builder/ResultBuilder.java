@@ -1,6 +1,7 @@
 package com.example.nukebombsimulation.builder;
 
 import com.example.nukebombsimulation.calculations.AllRadiusesCalculator;
+import com.example.nukebombsimulation.calculations.MainRadiusCalculator;
 import com.example.nukebombsimulation.casualties.Casualties;
 import com.example.nukebombsimulation.dto.CasualtiesDto;
 import com.example.nukebombsimulation.geojson.GeoJsonCreator;
@@ -19,7 +20,7 @@ public class ResultBuilder {
     public Result SetResult(Bomb bomb){
         GeoJsonCreator geoJsonCreator = new GeoJsonCreator(bomb);
         float population = populationClient.getPopulation(geoJsonCreator.getGeoJSON());
-        double mainRadius = geoJsonCreator.getMainRadius();
+        double mainRadius = new MainRadiusCalculator(bomb.isAirBurst(), bomb.getYield()).calculateRadius();
 
         AllRadiusesCalculator allRadiusesCalculator = new AllRadiusesCalculator((int) mainRadius);
         var radiuses  = allRadiusesCalculator.SetAllRadiuses();
